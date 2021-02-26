@@ -193,7 +193,8 @@ estimate_raster_size <- function(locations, src, z = NULL){
   
   locations <- bbox_to_sp(sp::bbox(locations), 
                           prj = sp::wkt(locations))
-  locations <- sp::spTransform(locations, sp::CRS("+init=EPSG:4326"))
+  #locations <- sp::spTransform(locations, sp::CRS("+init=EPSG:4326"))
+  locations <- sp::spTransform(locations, sp::CRS("+proj=longlat +datum=WGS84 +no_defs"))
   # Estimated cell size from zoom level source
   # https://github.com/tilezen/joerd/blob/master/docs/data-sources.md#sources-native-resolution
   z_res <- data.frame(z = 0:14, res_dd = c(0.54905236, 0.27452618, 0.15455633, 
